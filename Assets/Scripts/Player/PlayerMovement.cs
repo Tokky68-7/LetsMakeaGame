@@ -1,17 +1,26 @@
 using UnityEngine;
 
+[RequireComponent(typeof(MovementController))]
+[RequireComponent(typeof(InputHandler))]
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
-    public float v_max = 10f;
-    public float a_const = 40f;
-    public float d_const = 80f;
+    [SerializeField] 
+    private float v_max = 10f;
+    [SerializeField]
+    private float a_const = 40f;
+    [SerializeField]
+    private float d_const = 80f;
 
-    Rigidbody2D rb;
+    private InputHandler input;
+
+    private MovementController movement;
+
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        input = GetComponent<InputHandler>();
+        movement = GetComponent<MovementController>();
+
     }
 
     void Start()
@@ -19,33 +28,35 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("PlayerMovement started");
         
     }
-    void Update()
+    void FixedUpdate() // for physics calculations, physics incase we wana do explosions or knockback etc.
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
 
-        Vector2 c_vel = rb.linearVelocity;
-        Vector2 accel = new Vector2(h, v) * speed;
+        Move();
+    }
 
-        Vector2 direction = new Vector2(h, v).normalized;
+    private void Move()
+    {
+        Vector2 direction = input.MoveInput.normalized;
+
         Vector2 desiredVelocity = direction * v_max;
 
 
         float accelRate =
-            direction == Vector2.zero ?
-            d_const : a_const;
+            direction == Vector2.zero
+            ? d_const 
+            : a_const;
+
+        movement.SetWalkingVelocity(
+            Vector2.MoveTowards(
+                movement.WalkingVelocity,
+                desiredVelocity,
+                accelRate * Time.fixedDeltaTime
+            )
+        );
+
+    
 
         
-
-        if(rb.linearVelocity.magnitude < 0.1f * v_max)
-        {
-            accelRate += 0.5f * a_const;
-        }
-
-        rb.linearVelocity = Vector2.MoveTowards(
-            rb.linearVelocity,
-            desiredVelocity,
-            accelRate * Time.fixedDeltaTime);
         
     
     }
