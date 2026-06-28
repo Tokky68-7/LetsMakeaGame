@@ -11,19 +11,22 @@ public class IdleState : PlayerState
 
     public override void Enter()
     {
-        Debug.Log("Etnered Idle");
+        Debug.Log("Entered Idle");
     }
 
     public override void Update()
     {
         stateMachine.Movement.SetMoveIntent(
-            stateMachine.Input.MoveInput
-        );
+            stateMachine.Input.MoveInput);
 
-        if(stateMachine.Input.DashPressed)
+        if (stateMachine.Input.DashPressed)
         {
-            stateMachine.ChangeState(stateMachine.dashing);
+            if (stateMachine.Abilities.Activate<DashAbility>())
+            {
+                stateMachine.ChangeState(
+                    stateMachine.Ability);
+                
+            }
         }
     }
-
 }

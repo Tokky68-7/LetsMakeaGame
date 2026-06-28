@@ -29,10 +29,7 @@ public class MovementController : MonoBehaviour
     private Vector2 knockbackVelocity; 
     // takes different velocities from different functions (game actions) can be expanded to include more sources
 
-    [SerializeField]
-    private float dashSpeed = 20f;
-
-    public void StartDash(Vector2 direction)
+    public void StartDash(Vector2 direction, float dashSpeed)
     {
         dashVelocity =
             direction.normalized *dashSpeed;

@@ -1,54 +1,39 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DashingState : PlayerState
+public class DashingState : AbilityState
 {
     public DashingState(PlayerStateMachine machine)
-        : base(machine)
+        : base(machine) // timer duration
     {
 
     }
 
-    private float timer;
-    public float timer_max = 0.2f;
 
-    private Vector2 dashDirection;
+    public AbilityController abilityController {get; private set;}
 
-
+  
 
     public override void Enter()
     {
-        Debug.Log("Entered Dashing");
+        base.Enter();
 
-        timer = timer_max;
-
-        dashDirection =
-            stateMachine.Input.MoveInput;
-
-        if(dashDirection == Vector2.zero)
-        {
-            dashDirection = Vector2.right; // Defaults not recorded input direction for dashing as right
-            stateMachine.Movement.StartDash(
-                dashDirection
-        );
-        }
+        stateMachine.Abilities
+            .GetAbility<DashAbility>()
+            .Begin();
     }
 
     public override void Update()
     {
-        timer -= Time.deltaTime;
+        base.Update();
 
-        if(timer <= 0f)
-        {
-            stateMachine.ChangeState(
-                stateMachine.idle // Idle state acts as in between for all states.
-            );
-        }
+        stateMachine.Abilities.Tick();
     }
+
 
     public override void Exit()
     {
-        stateMachine.Movement.StopDash();   
+        stateMachine.Abilities.Finish();
     }
 
 }
