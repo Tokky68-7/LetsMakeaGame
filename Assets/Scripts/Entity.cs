@@ -1,8 +1,12 @@
 using UnityEngine;
 
-public class Entity : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+public class Entity : MonoBehaviour {
+
+    public virtual void Die()
+    {
+        Destroy(gameObject);
+    }
+
     void Start()
     {
         
@@ -13,4 +17,4 @@ public class Entity : MonoBehaviour
     {
         
     }
-}
+    }
