@@ -24,7 +24,7 @@ public class IdleState : PlayerState
             if (stateMachine.Abilities.Activate<DashAbility>())
             {
                 stateMachine.ChangeState(
-                    stateMachine.Ability);
+                    stateMachine.Ability);  
                 
             }
         }
