@@ -944,6 +944,7 @@ GameObject:
   - component: {fileID: 1461042810}
   - component: {fileID: 1461042812}
   - component: {fileID: 1461042811}
+  - component: {fileID: 1461042813}
   m_Layer: 0
   m_Name: SwordPivot
   m_TagString: Untagged
@@ -959,14 +960,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461042809}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 685964463}
   m_Father: {fileID: 1269666876}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
 --- !u!114 &1461042811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,6 +995,25 @@ MonoBehaviour:
   aimDistance: 5
   coneAngle: 30
   segments: 20
+--- !u!114 &1461042813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461042809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bafa050461c9347894906f683023d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordController
+  aimController: {fileID: 0}
+  inputHandler: {fileID: 0}
+  angleOffset: -30
+  followRotationSpeed: 1500
+  swingDuration: 0.2
+  swingArc: 150
+  swingAcceleration: 4
 --- !u!1 &2104952679
 GameObject:
   m_ObjectHideFlags: 0

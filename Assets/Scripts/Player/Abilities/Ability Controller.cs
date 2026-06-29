@@ -26,7 +26,6 @@ public class AbilityController : MonoBehaviour
     {
         abilities = new Dictionary<Type, Ability>();
         activeAbilities = new Dictionary<Type, Ability>();
-    
         foreach(Ability ability in GetComponents<Ability>())
         {
             abilities.Add(ability.GetType(), ability);
