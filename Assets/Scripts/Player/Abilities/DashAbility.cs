@@ -64,6 +64,7 @@ public class DashAbility : Ability
 
         public override void End()
     {
+        Debug.Log("Dash end");
         movement.StopDash();
     }
 

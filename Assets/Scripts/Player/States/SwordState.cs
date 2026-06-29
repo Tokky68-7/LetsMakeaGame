@@ -25,7 +25,7 @@ public class SwordState : AbilityState
 
     public override void Exit()
     {
-        stateMachine.Abilities.Finish();
+        stateMachine.Abilities.Finish<SwordAbility>();
     }
     
 

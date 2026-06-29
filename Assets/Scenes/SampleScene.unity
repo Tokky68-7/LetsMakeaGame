@@ -678,8 +678,8 @@ GameObject:
   - component: {fileID: 1269666871}
   - component: {fileID: 1269666870}
   - component: {fileID: 1269666869}
-  - component: {fileID: 1269666877}
   - component: {fileID: 1269666878}
+  - component: {fileID: 1269666877}
   - component: {fileID: 1269666880}
   m_Layer: 0
   m_Name: Circle
@@ -931,7 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8038b81350331438533c3217e741cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordAbility
-  swordHitbox: {fileID: 0}
+  swordHitbox: {fileID: 685964465}
   attackTime: 0.2
 --- !u!1 &1461042809
 GameObject:

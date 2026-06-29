@@ -29,7 +29,7 @@ public class DashingState : AbilityState
 
     public override void Exit()
     {
-        stateMachine.Abilities.Finish();
+        stateMachine.Abilities.Finish<DashAbility>();
     }
 
 }

@@ -26,7 +26,7 @@ public class AbilityController : MonoBehaviour
     {
         abilities = new Dictionary<Type, Ability>();
         activeAbilities = new Dictionary<Type, Ability>();
-
+    
         foreach(Ability ability in GetComponents<Ability>())
         {
             abilities.Add(ability.GetType(), ability);
@@ -107,6 +107,11 @@ public class AbilityController : MonoBehaviour
         {
             Finish(abilityType);
         }
+    }
+
+    public void Finish<T>() where T : Ability
+    {
+        Finish(typeof(T));
     }
 
     private void Finish(Type abilityType)

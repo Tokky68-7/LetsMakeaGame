@@ -52,6 +52,7 @@ void Awake()
     // Update is called once per frame
     void Update()
     {
+
         Movement.SetMoveIntent(Input.MoveInput);
 
         if (Input.DashPressed)
