@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 1269666875}
   - component: {fileID: 1269666874}
   - component: {fileID: 1269666873}
+  - component: {fileID: 1269666879}
   - component: {fileID: 1269666872}
   - component: {fileID: 1269666871}
   - component: {fileID: 1269666870}
@@ -531,7 +532,7 @@ GameObject:
   - component: {fileID: 1269666878}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -751,6 +752,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfba8b3d6eeb4ec4885fb3f3a213a0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityController
+--- !u!114 &1269666879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269666868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b50458f59ddd01488ddfcf24881b87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AimController
+  aimDistance: 5
+  coneAngle: 30
+  segments: 20
 --- !u!1 &2104952679
 GameObject:
   m_ObjectHideFlags: 0
