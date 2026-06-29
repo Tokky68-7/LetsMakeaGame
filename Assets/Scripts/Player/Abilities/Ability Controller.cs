@@ -6,13 +6,26 @@ using System.Collections.Generic;
 public class AbilityController : MonoBehaviour
 {
     private Dictionary<Type, Ability> abilities;
+    private Dictionary<Type, Ability> activeAbilities;
 
-    public Ability ActiveAbility { get; private set;}
+    public Ability ActiveAbility
+    {
+        get
+        {
+            foreach (Ability ability in activeAbilities.Values)
+            {
+                return ability;
+            }
+
+            return null;
+        }
+    }
 
 
     void Awake()
     {
         abilities = new Dictionary<Type, Ability>();
+        activeAbilities = new Dictionary<Type, Ability>();
 
         foreach(Ability ability in GetComponents<Ability>())
         {
@@ -23,10 +36,7 @@ public class AbilityController : MonoBehaviour
 
     public bool AbilityFinished()
     {
-        if (ActiveAbility == null)
-            return false;
-
-        return ActiveAbility.Finished();
+        return activeAbilities.Count == 0;
     }
 
 
@@ -42,6 +52,13 @@ public class AbilityController : MonoBehaviour
 
     public bool Activate<T>() where T : Ability
     {
+        Type abilityType = typeof(T);
+
+        if(activeAbilities.ContainsKey(abilityType))
+        {
+            return false;
+        }
+
         T ability = GetAbility<T>();
 
         if(ability == null)
@@ -54,7 +71,7 @@ public class AbilityController : MonoBehaviour
             return false;
         }
 
-        ActiveAbility = ability;
+        activeAbilities.Add(abilityType, ability);
 
         ability.Begin();
 
@@ -64,14 +81,43 @@ public class AbilityController : MonoBehaviour
 
     public void Tick()
     {
-        ActiveAbility?.Tick();
+        List<Type> finishedAbilities = new List<Type>();
+
+        foreach(KeyValuePair<Type, Ability> activeAbility in activeAbilities)
+        {
+            activeAbility.Value.Tick();
+
+            if(activeAbility.Value.Finished())
+            {
+                finishedAbilities.Add(activeAbility.Key);
+            }
+        }
+
+        foreach(Type abilityType in finishedAbilities)
+        {
+            Finish(abilityType);
+        }
     }
 
     public void Finish()
     {
-        ActiveAbility?.End();
+        List<Type> activeAbilityTypes = new List<Type>(activeAbilities.Keys);
 
-        ActiveAbility = null;
+        foreach(Type abilityType in activeAbilityTypes)
+        {
+            Finish(abilityType);
+        }
+    }
+
+    private void Finish(Type abilityType)
+    {
+        if(!activeAbilities.TryGetValue(abilityType, out Ability ability))
+        {
+            return;
+        }
+
+        ability.End();
+        activeAbilities.Remove(abilityType);
     }
 
     

@@ -1,4 +1,4 @@
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 // only answers where the player is aiming.
 public class AimController : MonoBehaviour
@@ -36,8 +36,6 @@ public class AimController : MonoBehaviour
         AimDirection = 
             (input.MouseWorldPosition - playerPosition).normalized;
 
-        Debug.Log("mouse " + input.MouseWorldPosition);
-        Debug.Log("aim " + AimDirection);
     }
 
     void OnDrawGizmos()

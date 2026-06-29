@@ -18,16 +18,12 @@ public class DashingState : AbilityState
     {
         base.Enter();
 
-        stateMachine.Abilities
-            .GetAbility<DashAbility>()
-            .Begin();
+        stateMachine.Abilities.Activate<DashAbility>();
     }
 
     public override void Update()
     {
         base.Update();
-
-        stateMachine.Abilities.Tick();
     }
 
 

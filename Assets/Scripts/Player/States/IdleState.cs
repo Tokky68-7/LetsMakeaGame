@@ -16,17 +16,5 @@ public class IdleState : PlayerState
 
     public override void Update()
     {
-        stateMachine.Movement.SetMoveIntent(
-            stateMachine.Input.MoveInput);
-
-        if (stateMachine.Input.DashPressed)
-        {
-            if (stateMachine.Abilities.Activate<DashAbility>())
-            {
-                stateMachine.ChangeState(
-                    stateMachine.Ability);  
-                
-            }
-        }
     }
 }
