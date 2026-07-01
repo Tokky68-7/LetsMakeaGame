@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 
 
 public class AbilityController : MonoBehaviour
@@ -81,6 +82,12 @@ public class AbilityController : MonoBehaviour
     public void Tick()
     {
         List<Type> finishedAbilities = new List<Type>();
+
+        foreach(KeyValuePair<Type, Ability> ability in abilities)
+        {
+            ability.Value.Cooldown();
+        }
+
 
         foreach(KeyValuePair<Type, Ability> activeAbility in activeAbilities)
         {

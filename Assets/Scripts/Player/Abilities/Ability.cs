@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
@@ -19,6 +19,8 @@ public abstract class Ability : MonoBehaviour
     public abstract void Begin();
 
     public abstract void Tick();
+
+    public abstract void Cooldown();
 
     public abstract void End();
 
