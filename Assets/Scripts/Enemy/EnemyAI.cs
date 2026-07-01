@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            playerHealth.TakeDamage(10f);
+            //playerHealth.TakeDamage(10f);
         }
     }
 }
